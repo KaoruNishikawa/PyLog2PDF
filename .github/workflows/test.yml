@@ -29,4 +29,3 @@ jobs:
         run: poetry run black --check tests pylog2pdf
       - name: Test by pytest
         run: poetry run pytest -v tests pylog2pdf
-
