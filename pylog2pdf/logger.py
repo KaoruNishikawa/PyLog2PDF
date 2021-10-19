@@ -6,9 +6,18 @@ import pylog2pdf
 def LoggedClass(cls):
     class Wrapped(cls):
         def __init__(self, *args, **kwargs):
-            base_name = self.__class__.__mro__[-2].__name__
-            pylog2pdf.LOG[base_name] = self.__class__.__mro__[0].__name__
-            super().__init__(*args, **kwargs)
+            mro = self.__class__.__mro__
+            base_name = mro[-2].__name__
+            if mro[0].__name__ == "Wrapped":
+                cls_name = mro[1].__name__
+            else:
+                cls_name = mro[0].__name__
+            pylog2pdf.LOG[base_name] = cls_name
+
+            try:
+                super().__init__(*args, **kwargs)
+            except TypeError:
+                pass
 
     return Wrapped
 
