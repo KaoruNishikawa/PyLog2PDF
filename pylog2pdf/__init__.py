@@ -24,4 +24,4 @@ LOG = GlobalDict()
 LOG.update({"function": []})
 
 # from .pdf_io import *
-# from .logger import *
+from .logger import *
