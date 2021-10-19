@@ -34,6 +34,11 @@ def sample_function2():
     pass
 
 
+LoggedDictionary = LoggedClass(dict)
+
+LoggedLength = LoggedFunction(len)
+
+
 def test_empty():
     for v in pylog2pdf.LOG.values():
         assert not v
@@ -62,3 +67,11 @@ def test_overwritten():
 def test_manually_add():
     pylog2pdf.LOG["radius"] = OtherThesis.radius
     assert pylog2pdf.LOG["radius"] == OtherThesis.radius
+
+
+def test_functional():
+    assert 3 == LoggedLength("abc")
+    assert "len" in pylog2pdf.LOG["function"]
+
+    _ = LoggedDictionary([(1, 2), (3, 4)])
+    assert pylog2pdf.LOG["dict"] == "dict"
