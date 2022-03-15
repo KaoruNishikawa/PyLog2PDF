@@ -5,7 +5,7 @@
 [![Test](https://img.shields.io/github/workflow/status/KaoruNishikawa/PyLog2PDF/Test?logo=github&label=Test&style=flat-square)](https://github.com/KaoruNishikawa/PyLog2PDF/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?label=License&style=flat-square)](LICENSE)
 
-PDF, a visualisation of your calculation, can have essentials of your code.
+PDF, a visualisation of your calculation, can store essentials of your code.
 
 ## Features
 
@@ -76,7 +76,7 @@ When you use `ThisThesis` class, the log will be:
 Of cource you can manually add anything you want to save:
 
 ```Python
->>> pylog2pdf["ThisParameter"] = 100 << u.K
+>>> pylog2pdf.LOG["ThisParameter"] = 100 << u.K
 ```
 
 ### Save the log to PDF file
