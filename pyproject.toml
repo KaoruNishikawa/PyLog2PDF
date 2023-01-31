@@ -14,7 +14,7 @@ PyPDF2 = "^3.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8"
-flake8 = "^3.8"
+flake8 = "^5.0"
 ipykernel = "^5.3"
 m2r2 = "^0.2"
 pydata-sphinx-theme = "^0.4"
