@@ -4,7 +4,7 @@ import ast
 import os
 from pathlib import Path
 
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfReader, PdfWriter
 
 import pylog2pdf
 
@@ -25,12 +25,12 @@ def write_log(pdf_path: os.PathLike, log: dict = pylog2pdf.LOG) -> Path:
     log = {k: str(v) for k, v in log.items()}  # Convert nested dict to string
 
     with Path(pdf_path).open("rb+") as file:
-        reader = PdfFileReader(file)
-        log.update(dict(reader.getDocumentInfo()))
+        reader = PdfReader(file)
+        log.update(dict(reader.metadata))
 
-        writer = PdfFileWriter()
-        writer.appendPagesFromReader(reader)
-        writer.addMetadata(log)
+        writer = PdfWriter()
+        writer.append_pages_from_reader(reader)
+        writer.add_metadata(log)
         writer.write(file)
     return Path(pdf_path)
 
@@ -39,8 +39,8 @@ def read_log(pdf_path: os.PathLike) -> dict:
     pdf_path = Path(pdf_path).with_suffix(".pdf")
 
     with pdf_path.open("rb") as file:
-        reader = PdfFileReader(file)
-        log = reader.getDocumentInfo()
+        reader = PdfReader(file)
+        log = reader.metadata
 
     def get_log(dict_):
         ret = []
